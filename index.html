@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title.TechPort Gadgets – Premium Accessories</title>
+  <style>
+    :root{
+      --bg: #0b0b0f;
+      --surface: #14161d;
+      --text: #0f1115;
+      --muted: #6b7280;
+      --blue: #19e1ff;          /* electric blue accent */
+      --silver: #cbd5e1;        /* light silver tone */
+      --accent: #0aa2ff;         /* secondary emphasis */
+      --card: #1a1b22;
+      --white: #ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%}
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                   Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: #f7f7fb;
+      line-height: 1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width: min(1100px, 92%); margin:0 auto}
+
+    /* Navbar */
+    header{position:sticky; top:0; z-index:999; background: rgba(255,255,255,0.96); backdrop-filter: saturate(1.2) blur(4px); border-bottom:1px solid #e5e7eb}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(#111, #555); display:inline-block}
+    .brand-name{font-weight:700; letter-spacing:.3px; color:#111}
+    nav ul{list-style:none; display:flex; gap:20px; padding:0; margin:0}
+    nav a{color:#111; font-weight:500; padding:8px 12px; border-radius:8px}
+    nav a:hover{background:#eef2ff}
+
+    /* Hero */
+    .hero{position:relative; height:82vh; min-height:520px; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+    .hero::before{content:''; position:absolute; inset:0; background: linear-gradient(to bottom right, rgba(2,6,23,.6), rgba(2,6,23,.2)); mix-blend-mode: multiply;}
+    .hero__bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter: saturate(1.05) contrast(1.05);}
+    .hero__overlay{position:relative; z-index:1; display:flex; align-items:center; justify-content:center; text-align:center; padding:48px 16px}
+    .hero__title{font-size: clamp(2.2rem, 4vw + 1rem, 4rem); color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.25); margin:0 0 12px}
+    .hero__subtitle{font-size: clamp(1rem, 1vw + .8rem, 1.25rem); color:#e9f4ff; max-width:60ch; margin:0 auto 22px}
+    .cta-row{display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
+    .btn{border:0; border-radius:10px; padding:14px 22px; font-weight:700; cursor:pointer; transition: transform .2s ease, background .2s ease, color .2s ease}
+    .btn:active{transform: translateY(1px) scale(.99)}
+    .btn-primary{background: #0a0a0f; color:#fff; box-shadow:0 6px 20px rgba(0,0,0,.25)}
+    .btn-outline{background:#fff; color:#0a0a0f; border:2px solid #0a0a0f}
+
+    /* Sections */
+    section{padding:72px 0}
+    h2{font-size:2rem; margin:0 0 14px; color:#111}
+    p.lead{color:var(--muted); font-size:1.05rem; margin:0 0 6px}
+
+    /* Categories grid */
+    .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:22px}
+    .card{background:#fff; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,.08); overflow:hidden; display:flex; flex-direction:column}
+    .card img{width:100%; height:180px; object-fit:cover; display:block}
+    .card__body{padding:14px 14px 18px}
+    .card__title{font-weight:700; margin:0 0 6px}
+    .card__desc{color:var(--muted); font-size:.95rem; min-height:38px}
+    .card__actions{display:flex; gap:8px; align-items:center; justify-content:space-between; margin-top:auto; padding:0 0 6px}
+    .tag{font-size:.8rem; padding:6px 10px; border-radius:999px; background:#f2f4f8; color:#111}
+    .shop{ background:#0a0a0f; color:#fff; padding:10px 12px; border-radius:8px; font-weight:700; border:0}
+
+    /* Info panels */
+    .info{display:grid; grid-template-columns: 1fr 1fr; gap:22px; align-items: center}
+    .info__item{display:flex; gap:14px; align-items:center; padding:14px; border-radius:12px; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,.05)}
+    .info__icon{width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; background: #111; color:#fff}
+    .info__text{font-weight:600}
+    .info__sub{color:var(--muted); font-weight:500}
+    @media (max-width: 800px){
+      .info{grid-template-columns:1fr}
+    }
+
+    /* Testimonials */
+    .testimonials{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px}
+    .testi{padding:18px; border-radius:12px; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,.05)}
+    .stars{color:#f5a623; margin-bottom:8px}
+
+    /* Footer */
+    footer{background:#111; color:#e2e8f0; padding:40px 0 60px}
+    .footer-grid{display:grid; grid-template-columns: 1fr 1fr 1fr; gap:28px}
+    .socials{display:flex; gap:12px}
+    .socials a{width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; background:#1f2937; color:#fff}
+    .credit{font-size:.9rem; color:#a0aec0; margin-top:6px}
+    @media (max-width: 900px){
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 600px){
+      .footer-grid{grid-template-columns:1fr}
+    }
+
+    /* Floating WhatsApp button */
+    .whatsapp-float{position: fixed; right:20px; bottom:20px; z-index: 9999; display:flex; align-items:center; gap:8px; padding:12px 14px; border-radius:999px; background:#25D366; color:#fff; box-shadow:0 8px 16px rgba(0,0,0,.25)}
+    .whatsapp-float svg{width:20px; height:20px}
+
+  </style>
+</head>
+<body>
+  <!-- Floating WhatsApp button (Africa region) -->
+  <a class="whatsapp-float" href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp" style="text-decoration:none; color:white; display:flex; align-items:center; gap:8px;">
+    <span style="width:20px;height:20px; display:inline-block; border-radius:50%; background:white; padding:2px;">
+      <!-- simple WhatsApp icon inside circle -->
+      <svg viewBox="0 0 24 24" fill="#25D366" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-label="WhatsApp Icon"><path d="M17.5 14.5l-1.3-1.3a5 5 0 1 0-7.5 0l-1.2 1.2a1 1 0 0 0 .7 1.7h.9a11 11 0 0 0 9.9-6.2l.2-.4a1 1 0 0 0-1.3-1.4l-.4.2A11 11 0 0 0 6 6l-.4-.1A1 1 0 0 0 4.3 6l.2.4A13 13 0 0 1 17.5 14.5z"/></svg>
+    </span>
+    Chat
+  </a>
+
+  <!-- Header / Navbar -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <div class="brand">
+        <span class="logo" aria-label="TechPort Gadgets Logo"></span>
+        <div>
+          <div class="brand-name" style="font-size:1.05rem;">TechPort Gadgets</div>
+          <small style="color:#6b7280; display:block; margin-top:2px;">Lagos Premium Accessories</small>
+        </div>
+      </div>
+      <nav aria-label="Main Menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#categories">Shop</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" aria-label="Hero">
+    <img class="hero__bg" src="https://im.runware.ai/image/ws/2/ii/c1e52379-1a23-4640-8080-0bdd5fb0f91a.jpg" alt="Premium Lagos tech lifestyle with black, silver and electric blue accents"/>
+    <div class="hero__overlay container" style="text-align:center;">
+      <div>
+        <h1 class="hero__title">TechPort Gadgets – Premium Phone & Laptop Accessories</h1>
+        <p class="hero__subtitle">Durable, meticulously designed essentials for everyday professionals and corporate teams in Lagos. Elevate your tech with premium cases, chargers, headsets, stands, and protectors.</p>
+        <div class="cta-row" aria-label="Primary CTAs">
+          <button class="btn btn-primary" aria-label="Shop Now">Shop Now</button>
+          <a class="btn btn-outline" href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categories" aria-label="Product categories">
+    <div class="container" style="text-align:center;">
+      <h2>Product Categories</h2>
+      <p class="lead"> curated ranges for Phones, Laptops, Accessories, Power, and Audio — all built for durability and design.</p>
+    </div>
+    <div class="container" style="padding-top:8px; padding-bottom:8px;">
+      <div class="grid" aria-label="Categories grid">
+        <!-- Phones -->
+        <article class="card" aria-label="Phones category">
+          <img src="https://im.runware.ai/image/ws/2/ii/aeddc0d8-442e-4f7e-acbd-25158cf1f4bb.jpg" alt="Premium Phones & Accessories"/>
+          <div class="card__body">
+            <h3 class="card__title" style="margin:0 0 6px;">Phones & Accessories</h3>
+            <p class="card__desc">Premium cases, screen protectors, and essential accessories for everyday use.</p>
+            <div class="card__actions">
+              <button class="shop" aria-label="Shop Phones">Shop</button>
+              <a href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp" style="font-weight:700; font-size:.95rem; color:#0a0a0f; text-decoration:none;">Chat</a>
+            </div>
+          </div>
+        </article>
+        <!-- Laptops -->
+        <article class="card" aria-label="Laptops category">
+          <img src="https://im.runware.ai/image/ws/2/ii/cd4f0bdb-ba3d-43bc-813d-f64796c8bb35.jpg" alt="Laptop stands & accessories"/>
+          <div class="card__body">
+            <h3 class="card__title" style="margin:0 0 6px;">Laptops & Stands</h3>
+            <p class="card__desc">Stands, cooling solutions, and essentials for productivity on the go.</p>
+            <div class="card__actions">
+              <button class="shop" aria-label="Shop Laptops">Shop</button>
+              <a href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp" style="font-weight:700; font-size:.95rem; color:#0a0a0f; text-decoration:none;">Chat</a>
+            </div>
+          </div>
+        </article>
+        <!-- Accessories -->
+        <article class="card" aria-label="Accessories category">
+          <img src="https://im.runware.ai/image/ws/2/ii/4ceb183b-b9cd-473f-98b2-12c340958a55.jpg" alt="Phone cases, screen protectors & chargers"/>
+          <div class="card__body">
+            <h3 class="card__title" style="margin:0 0 6px;">Accessories</h3>
+            <p class="card__desc">Premium cases, screen protectors, and premium charging solutions.</p>
+            <div class="card__actions">
+              <button class="shop" aria-label="Shop Accessories">Shop</button>
+              <a href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp" style="font-weight:700; font-size:.95rem; color:#0a0a0f; text-decoration:none;">Chat</a>
+            </div>
+          </div>
+        </article>
+        <!-- Power -->
+        <article class="card" aria-label="Power category">
+          <img src="https://im.runware.ai/image/ws/2/ii/23e45797-a098-4625-9421-4386e5cf2d6f.jpg" alt="Power banks & chargers"/>
+          <div class="card__body">
+            <h3 class="card__title" style="margin:0 0 6px;">Power & Chargers</h3>
+            <p class="card__desc">Reliable power banks and fast chargers for on-the-go productivity.</p>
+            <div class="card__actions">
+              <button class="shop" aria-label="Shop Power">Shop</button>
+              <a href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp" style="font-weight:700; font-size:.95rem; color:#0a0a0f; text-decoration:none;">Chat</a>
+            </div>
+          </div>
+        </article>
+        <!-- Audio -->
+        <article class="card" aria-label="Audio category">
+          <img src="https://im.runware.ai/image/ws/2/ii/61b242ad-3f8b-42dc-a951-990834247b46.jpg" alt="Bluetooth headsets & audio"/>
+          <div class="card__body">
+            <h3 class="card__title" style="margin:0 0 6px;">Audio</h3>
+            <p class="card__desc">Bluetooth headsets with crystal-clear sound and long-lasting battery life.</p>
+            <div class="card__actions">
+              <button class="shop" aria-label="Shop Audio">Shop</button>
+              <a href="https://wa.me/2348012345678" target="_blank" aria-label="Chat on WhatsApp" style="font-weight:700; font-size:.95rem; color:#0a0a0f; text-decoration:none;">Chat</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lagos delivery and 24h support -->
+  <section id="service" aria-label="Delivery and support" style="background:#f6f7fb;">
+    <div class="container info" style="gap:28px; padding-top:8px; padding-bottom:8px;">
+      <div class="info__item" aria-label="Free Lagos delivery">
+        <div class="info__icon" aria-hidden="true">🚚</div>
+        <div>
+          <div class="info__text">Free delivery within Lagos</div>
+          <div class="info__sub">Fast, reliable, and insured for all orders.</div>
+        </div>
+      </div>
+      <div class="info__item" aria-label="24-hour support">
+        <div class="info__icon" aria-hidden="true">⏱️</div>
+        <div>
+          <div class="info__text">24-hour support</div>
+          <div class="info__sub">Our team is ready to assist you anytime.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Highlights -->
+  <section id="about" aria-label="About TechPort Gadgets">
+    <div class="container" style="text-align:center;">
+      <h2>About TechPort Gadgets</h2>
+      <p class="lead" style="max-width:720px; margin:0 auto;">We partner with trusted manufacturers to deliver authentic, durable, and design-forward tech accessories. Our focus is on genuine quality, reliable performance, and premium aesthetics for Lagos professionals and enterprises.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" aria-label="Customer reviews">
+    <div class="container" style="text-align:center;">
+      <h2>What our customers say</h2>
+      <p class="lead" style="margin-bottom:20px;">Three quick stories from happy TechPort clients.</p>
+    </div>
+    <div class="container testimonials" style="padding-bottom:40px;">
+      <blockquote class="testi" aria-label="Review 1">
+        <div class="stars" aria-label="Rating">⭐⭐⭐⭐⭐</div>
+        <p style="margin:0 0 6px;">“The best accessories store in Lagos! My charger and case look brand new after months of use.” — Chidera O.</p>
+      </blockquote>
+      <blockquote class="testi" aria-label="Review 2">
+        <div class="stars" aria-label="Rating">⭐⭐⭐⭐⭐</div>
+        <p style="margin:0 0 6px;">“TechPort’s customer service is exceptional. I got my order within 24 hours!” — David A.</p>
+      </blockquote>
+      <blockquote class="testi" aria-label="Review 3">
+        <div class="stars" aria-label="Rating">⭐⭐⭐⭐⭐</div>
+        <p style="margin:0 0 6px;">“Their Bluetooth headset is amazing — clear sound and long battery life.” — Aisha K.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- CTA / Shop section -->
+  <section id="cta" aria-label="Call to action" style="background:linear-gradient(#fff, #f5f7fb);">
+    <div class="container" style="text-align:center; padding:40px 0 20px;">
+      <h2 style="margin:0 0 6px;">Elevate your tech kit today</h2>
+      <p class="lead" style="margin:0 0 14px;">Premium, durable, and beautifully designed accessories for the modern Lagos professional.</p>
+      <button class="btn btn-primary" aria-label="Shop Now in CTA">Shop Now</button>
+      <a href="https://wa.me/2348012345678" target="_blank" class="btn btn-outline" style="margin-left:8px;">Chat on WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" aria-label="Footer" style="margin-top:0;">
+    <div class="container footer-grid" style="gap:28px; padding:0 0 20px;">
+      <div>
+        <div class="brand-name" style="font-weight:800; font-size:1.1rem; color:#fff;">TechPort Gadgets</div>
+        <p class="credit" style="margin-top:8px;">Lagos, Nigeria</p>
+        <p class="credit" style="margin-top:4px;">Email: contact@techportgadgets.ng</p>
+      </div>
+      <div>
+        <strong style="color:#fff; display:block; margin-bottom:6px;">Categories</strong>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <a href="#" style="color:#d1d5db;">Phones</a>
+          <a href="#" style="color:#d1d5db;">Laptops</a>
+          <a href="#" style="color:#d1d5db;">Accessories</a>
+          <a href="#" style="color:#d1d5db;">Power</a>
+        </div>
+      </div>
+      <div>
+        <strong style="color:#fff; display:block; margin-bottom:6px;">Follow Us</strong>
+        <div class="socials" aria-label="Social media links">
+          <a href="#" aria-label="Instagram" title="Instagram" class="social-icon" style="border:1px solid #374151; display:inline-flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10A5 5 0 0 1 12 7zm0 2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg></a>
+          <a href="#" aria-label="Facebook" title="Facebook" class="social-icon" style="border:1px solid #374151; display:inline-flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 1 0-11.5 9.95v-7.03H8.9V12h2.6V9.5c0-2.58 1.54-4 3.9-4 1.13 0 2.31.2 2.31.2v2.53h-1.3c-1.28 0-1.68.8-1.68 1.62V12h2.85l-.46 2.92h-2.39v7.03A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="TikTok" title="TikTok" class="social-icon" style="border:1px solid #374151; display:inline-flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M9 6.5c0-2.2 1.8-4 4-4v0c-1.1 0-2 .9-2 2v.01c0-.55-.45-1-1-1H6v5h.5c.28 0 .53-.11.72-.29A.999.999 0 0 1 8 10V6h1v.5zM14 13h-1a3 3 0 0 1-3-3v-2h2v2c0 .55.45 1 1 1h1v2z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" title="Twitter/X" class="social-icon" style="border:1px solid #374151; display:inline-flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.92c-.77.34-1.6.57-2.46.67a4.27 4.27 0 0 0-7.28 3.9A12.1 12.1 0 0 1 3 4.9a4.27 4.27 0 0 0 1.32 5.69 4.23 4.23 0 0 1-1.93-.53v.05a4.28 4.28 0 0 0 3.43 4.2c-.38.1-.78.15-1.19.15-.29 0-.57-.03-.84-.08a4.28 4.28 0 0 0 3.99 2.97A8.57 8.57 0 0 1 2 19.54 12.08 12.08 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.36-.02-.54A8.3 8.3 0 0 0 22 5.92z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="text-align:center; padding:0 0 8px; color:#94a3b8;">
+      <span>made with ❤️ by adorrable.dev</span>
+    </div>
+  </footer>
+</body>
+</html>
